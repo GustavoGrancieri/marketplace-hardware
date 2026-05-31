@@ -1,0 +1,66 @@
+# --- CONEXÃO BD ---
+networks:
+  frontend_net:
+    driver: bridge
+  backend_net:
+    driver: bridge
+    internal: true
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: db_marketplace
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: marketplace_db
+    networks:
+      - backend_net
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # 2. Interface Visual do Banco
+  adminer:
+    image: adminer
+    container_name: adminer_marketplace
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - backend_net
+
+  # 3. Back-end (Node.js)
+  api:
+    build: ./backend
+    container_name: api_marketplace
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: postgres
+      DB_USER: admin
+      DB_PASSWORD: admin
+      DB_NAME: marketplace_db
+      DB_PORT: 5432
+      PORT: 3000
+    networks:
+      - frontend_net
+      - backend_net
+    depends_on:
+      - postgres
+
+  # 4. Front-end (React + Nginx)
+  web:
+    build: ./frontend
+    container_name: web_marketplace
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - frontend_net
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
