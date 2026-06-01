@@ -1,0 +1,102 @@
+.cadastro-container{
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:
+  linear-gradient(
+    rgba(5,8,22,.9),
+    rgba(5,8,22,.95)
+  ),
+  url("https://images.unsplash.com/photo-1518770660439-4636190af475");
+
+  background-size:cover;
+  background-position:center;
+}
+
+.cadastro-card{
+  width:500px;
+  max-width:90%;
+
+  background:#111827;
+
+  border-radius:25px;
+
+  padding:35px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:15px;
+
+  box-shadow:
+  0 0 30px rgba(0,212,255,.2);
+}
+
+.cadastro-card h1{
+  text-align:center;
+
+  margin-bottom:15px;
+
+  background:
+  linear-gradient(
+    90deg,
+    #00d4ff,
+    #7c4dff
+  );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+}
+
+.cadastro-card input{
+  padding:15px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#1f2937;
+
+  color:white;
+}
+
+.cadastro-botoes{
+  display:flex;
+
+  gap:15px;
+
+  margin-top:10px;
+}
+
+.cadastro-botoes button{
+  flex:1;
+
+  padding:15px;
+
+  border:none;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  color:white;
+
+  font-weight:bold;
+}
+
+.voltar-btn{
+  background: #111827;
+}
+
+.cadastrar-btn{
+  background:#22c55e;
+}
+
+.cadastrar-btn:hover{
+  background:#16a34a;
+}
